@@ -210,4 +210,13 @@ class LineBallShootView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBallShootView {
+            val view : LineBallShootView = LineBallShootView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
