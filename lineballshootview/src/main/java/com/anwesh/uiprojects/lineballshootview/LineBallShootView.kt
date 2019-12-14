@@ -186,4 +186,26 @@ class LineBallShootView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBallShootView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbs : LineBallShoot = LineBallShoot(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            lbs.draw(canvas, paint)
+            animator.animate {
+                lbs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
